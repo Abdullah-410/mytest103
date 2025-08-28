@@ -13,27 +13,6 @@
     {% endcase %}
 {% endfor %}
 
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'button' %}
-      <a 
-        href="{{ block.settings.button_link }}" 
-        style="
-          display: inline-block;
-          padding: 10px 20px;
-          color: {{ block.settings.text_color }};
-          background-color: {{ block.settings.bg_color }};
-          text-decoration: none;
-          border-radius: 5px;
-          margin: 5px 0;
-        "
-      >
-        {{ block.settings.button_text }}
-      </a>
-  {% endcase %}
-{% endfor %}
-
-
 {% schema %}
 {
     "name": "test",
