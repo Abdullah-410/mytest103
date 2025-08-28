@@ -1,0 +1,92 @@
+<div style="text-align: {{ section.settings.text_allignment }};">
+    {% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'title' %}
+      <h2 style="background-color: {{ block.settings.bg_color }}; color: {{ block.settings.font_color }};">TITLE</h2>
+    {% when 'subtitle' %}
+      <h4 style="background-color: {{ block.settings.bg_color }}; color: {{ block.settings.font_color }};">SUBTITLE</h4>
+
+  {% endcase %}
+{% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Hello World",
+    "settings": [
+      {
+        "type": "select",
+        "id": "text_allignment",
+        "label": "text_allignment",
+        "default": "center",
+        "info": "align the text in center",
+        "options": [
+            {
+                "value": "left",
+                "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "right",
+                "label": "Right"
+            } 
+        ]
+      }
+    ],
+
+    "blocks": [
+      {
+        "type": "title",
+        "name": "Title",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Hello World"
+          }, {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#F2e6e6"
+          }, {
+            "type": "color",
+            "id": "font_color",
+            "label": "Font Color",
+            "default": "#000"
+          }
+        ]
+      }, {
+        "name": "Subtitle",
+        "type": "subtitle",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Hello World"
+          }, {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#F2e6e6"
+          }, {
+            "type": "color",
+            "id": "font_color",
+            "label": "Font Color",
+            "default": "#000"
+          }
+        ]
+      }
+    ],
+
+    "presets": [
+      {
+        "name": "Hello World"
+      }
+    ]
+  }
+{% endschema %}
