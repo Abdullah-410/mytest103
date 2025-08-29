@@ -1,71 +1,120 @@
 {% style %}
-    .first{
-        color: {{ section.settings.text_color }};
-        background-color: {{ section.settings.bg_color }}
-    }
+  .first {
+    color: {{ section.settings.text_color }};
+    background-color: {{ section.settings.bg_color }};
+  }
 {% endstyle %}
 
 <h2 class="first">{{ section.settings.Text }}</h2>
+
 {% for block in section.blocks %}
-    {% case block.type %}
-        {% when 'title' %}
-        <h2 style="color: {{ block.settings.text_color }}; background-color: {{ block.settings.bg_color }}"> {{ block.settings.text }} </h2>
-    {% endcase %}
+  {% case block.type %}
+    {% when 'title' %}
+      <h2 style="color: {{ block.settings.text_color }}; background-color: {{ block.settings.bg_color }}">
+        {{ block.settings.text }}
+      </h2>
+    {% when 'button' %}
+      <a 
+        href="{{ block.settings.button_link }}" 
+        style="
+          display: inline-block;
+          padding: 10px 20px;
+          color: {{ block.settings.text_color }};
+          background-color: {{ block.settings.bg_color }};
+          text-decoration: none;
+          border-radius: 5px;
+          margin: 5px 0;
+        "
+      >
+        {{ block.settings.button_text }}
+      </a>
+  {% endcase %}
 {% endfor %}
 
 {% schema %}
 {
-    "name": "test",
-    "settings": [
-        {
-            "type": "text",
-            "id": "Text",
-            "label": "Text",
-            "default": "My First Heading"
-        },
-        {
-            "type": "color",
-            "id": "text_color",
-            "label": "Color",
-            "default": "#000"
-        },
-        {
-            "type": "color",
-            "id": "bg_color",
-            "label": "Background-Color",
-            "default": "#ffff00"
-        } 
-    ],
-    "blocks": [
-        {
-            "type": "title",
-            "name": "title",
-            "settings": [
-                {
-            "type": "text",
-            "id": "text",
-            "label": "Text",
-            "default": "Abdullah"
-        },
-        {
-            "type": "color",
-            "id": "text_color",
-            "label": "Color",
-            "default": "#000"
-        },
-        {
-            "type": "color",
-            "id": "bg_color",
-            "label": "Background-Color",
-            "default": "#ffff00"
-        } 
-        ]
+  "name": "Combined Title and Button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "Text",
+      "label": "Main Heading Text",
+      "default": "My First Heading"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Main Background Color",
+      "default": "#ffff00"
     }
-    ],
-    "presets": [
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title Block",
+      "settings": [
         {
-            "name": "test"
+          "type": "text",
+          "id": "text",
+          "label": "Title Text",
+          "default": "Abdullah"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Title Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Title Background Color",
+          "default": "#ffff00"
         }
-    ]
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Click Me"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link",
+          "default": "/"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Button Background Color",
+          "default": "#007bff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test",
+      "category": "Custom"
+    }
+  ]
 }
 {% endschema %}
