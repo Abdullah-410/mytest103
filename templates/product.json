@@ -23,6 +23,10 @@
           "type": "title",
           "settings": {}
         },
+        "material_brktCN": {
+          "type": "material",
+          "settings": {}
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -59,6 +63,7 @@
       "block_order": [
         "vendor",
         "title",
+        "material_brktCN",
         "price",
         "variant_picker",
         "quantity_selector",
