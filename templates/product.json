@@ -106,7 +106,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/id7f5e340s6bryyokesb.jpg",
+        "image": "{{ product.metafields.custom.influencer.value.image.value }}",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
