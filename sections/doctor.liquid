@@ -1,0 +1,202 @@
+<section class="doctor-highlight-section">
+  <div class="doctor-highlight-container">
+    <div class="image-wrapper">
+      {% if section.settings.main_image != blank %}
+        <img
+          src="{{ section.settings.main_image | image_url: width: 800 }}"
+          alt="Doctor Image"
+          class="main-image"
+          width="{{ section.settings.main_image.width }}"
+          height="{{ section.settings.main_image.height }}">
+      {% endif %}
+
+      {% if section.settings.badge_image != blank %}
+        <img
+          src="{{ section.settings.badge_image | image_url: width: 100 }}"
+          alt="Badge Image"
+          class="badge-image {{ section.settings.badge_position }}"
+          width="{{ section.settings.badge_image.width }}"
+          height="{{ section.settings.badge_image.height }}">
+      {% endif %}
+    </div>
+
+    <div class="text-content">
+      {% if section.settings.doctor_name != blank %}
+        <h1 class="doctor-name">{{ section.settings.doctor_name }}</h1>
+      {% endif %}
+      {% if section.settings.headline != blank %}
+        <h2 class="headline">{{ section.settings.headline }}</h2>
+      {% endif %}
+      {% if section.settings.body_text != blank %}
+        <p class="body-text">{{ section.settings.body_text }}</p>
+      {% endif %}
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="cta-button">{{ section.settings.button_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .doctor-highlight-section {
+    padding: 40px 20px;
+  }
+
+  .doctor-highlight-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .image-wrapper {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .badge-image {
+    position: absolute;
+    width: 80px;
+    height: auto;
+  }
+
+  /* Badge Position Classes */
+  .top-left {
+    top: 10px;
+    left: 10px;
+  }
+
+  .bottom-left {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .top-right {
+    top: 10px;
+    right: 10px;
+  }
+
+  .bottom-right {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .text-content .doctor-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1a8cff;
+  }
+
+  .text-content .headline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .text-content .body-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ffcc00;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .doctor-highlight-container {
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .text-content {
+      max-width: 400px;
+      margin-left: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "Doctor Highlight",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Main Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "badge_image",
+        "label": "Badge Image"
+      },
+      {
+        "type": "select",
+        "id": "badge_position",
+        "label": "Badge Position",
+        "default": "top-left",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "Top Left"
+          }, {
+            "value": "bottom-left",
+            "label": "Bottom Left"
+          }, {
+            "value": "top-right",
+            "label": "Top Right"
+          }, {
+            "value": "bottom-right",
+            "label": "Bottom Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "doctor_name",
+        "label": "Doctor's Name",
+        "default": "Dr. John Doe"
+      }, {
+        "type": "text",
+        "id": "headline",
+        "label": "Headline",
+        "default": "Your Trusted Health Partner"
+      }, {
+        "type": "textarea",
+        "id": "body_text",
+        "label": "Body Text",
+        "default": "Providing exceptional care and support to every patient."
+      }, {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Learn More"
+      }, {
+        "type": "text",
+        "id": "button_link",
+        "label": "Button URL",
+        "default": "/pages/about"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Doctor Highlight",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
